@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -17,9 +19,9 @@
 	<div class="cont-main clearfix">
 		<div class="index-tab">
 			<div class="index-slide-nav">
-				<a class="active">查询</a>
-				<a >添加</a>
-				<a >编辑</a>
+				<a href=searchResult class="active">查询</a>
+				<a href=addNewWhat>添加</a>
+				<a href=listAndUpdateBook>编辑</a>
 				<div class="slide-bar"></div>				
 			</div>
 		</div>
@@ -30,18 +32,22 @@
 
 
 <!-- 这里加入显示的作者的全部图书 -->
-
+		<form action="SearchBook.action" method="post">
+		
 		<div class="login form">
 			<div class="group">
-				<div class="group-ipt authorsName">
-					<input type="text" name="authorsName" id="authorsName" class="ipt">
+
+				<div class="group-ipt authorsname">
+					<input type="text" name="authorsname" id="authorsname" class="ipt" placeholder="请输入作者的姓名" required>
 				</div>
 			</div>
 		</div>
 
-		<div class="button">
+ 		<div class="button">
 			<button type="submit" class="login-btn register-btn" id="button">查询该作者的图书</button>
 		</div>
+
+		</form>
 	</div>
 </div>
 

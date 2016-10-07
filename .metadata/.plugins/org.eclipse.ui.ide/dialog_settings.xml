@@ -3,4 +3,6 @@
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
 		<item value="/Users/admin/Desktop/workspace/Demo"/>
 	</list>
+	<section name="ExternalProjectImportWizard">
+	</section>
 </section>

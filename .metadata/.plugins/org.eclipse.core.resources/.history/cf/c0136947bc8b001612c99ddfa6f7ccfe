@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<title>书目查询系统</title>
+	<link rel="stylesheet" type="text/css" href="style/register-login.css">
+</head>
+<body>
+<div id="box"></div>
+<div class="cent-box register-box">
+	<div class="cent-box-header">
+		<h1 class="main-title hide">lab2</h1>
+		<h2 class="sub-title">樊昱才lab2 - BookDB System</h2>
+	</div>
+
+	<div class="cont-main clearfix">
+		<div class="index-tab">
+			<div class="index-slide-nav">
+				<a href=searchResult class="active">查询</a>
+				<a href=addNewBook>添加</a>
+				<a href=updateBook>编辑</a>
+				<div class="slide-bar"></div>				
+			</div>
+		</div>
+
+
+<!-- 这里加入显示的作者的全部图书 -->
+
+        <h5>这里显示查询的结果</h5>
+        <h5>${requestScope.tip}</h5>
+        <h5>${sessionScope.user}</h5>
+        <h5>${requestScope.bookISBN}</h5>
+		
+<!-- 		<form action="DeleteBook.action" method="post">
+			<div class="button">
+				<input type="button" onclick="DeleteBook.action" value="在数据库中删除该图书的信息" class="login-btn register-btn" id="button"></input>
+			</div>
+		</form> -->
+		
+<!-- 这里加入显示的作者的全部图书 -->
+		<div class="index-tab">
+			<div class="index-slide-nav">
+				<a href=DeleteBook.action class="active">删除</a>
+				<div class="slide-bar"></div>				
+			</div>
+		</div>
+
+		<br/><hr style=" height:1px;border:none;border-top:1px solid #0f88eb;" /><br/>
+		<form action="SearchBook.action" method="post">
+		
+			<div class="login form">
+				<div class="group">
+	
+					<div class="group-ipt authorsName">
+						<input type="text" name="authorsName" id="authorsName" class="ipt" placeholder="请输入作者的姓名" required>
+					</div>
+				</div>
+			</div>
+	
+			<div class="button">
+				<button type="submit" class="login-btn register-btn" id="button">查询该作者的图书</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- background -->
+<script src='js/particles.js' type="text/javascript"></script>
+<script src='js/background.js' type="text/javascript"></script>
+<script src='js/jquery.min.js' type="text/javascript"></script>
+<script src='js/layer/layer.js' type="text/javascript"></script>
+<script src='js/index.js' type="text/javascript"></script>
+
+</body>
+</html>

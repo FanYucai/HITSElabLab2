@@ -1,0 +1,116 @@
+package qwq;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class BookDetail extends ActionSupport {
+
+	private String isbn;
+	private String title;
+	private String authorid;
+	private String publishdate;
+	private String price;
+	private String publisher;
+	
+	public String getIsbn() {
+		return isbn;
+	}
+	
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	
+	public String getPublisher() {
+		return publisher;
+	}
+	
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	
+	public String getPublishdate() {
+		return publishdate;
+	}
+	
+	public void setPublishdate(String publishdate) {
+		this.publishdate = publishdate;
+	}
+	public String getPrice() {
+		return price;
+	}
+	
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String execute() throws Exception {
+		String ret = ERROR;
+//		String ret = SUCCESS;
+		String URL = "jdbc:mysql://localhost/BookDB";
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
+		
+		String sql1 = "SELECT ISBN FROM Book WHERE";
+		sql1 += " Title = ?";
+		String sql2 = "SELECT AuthorID FROM Book WHERE";
+		sql2 += " Title = ?";
+		String sql3 = "SELECT Publisher FROM Book WHERE";
+		sql3 += " Title = ?";
+		String sql4 = "SELECT PublishDate FROM Book WHERE";
+		sql4 += " Title = ?";
+		String sql5 = "SELECT Price FROM Book WHERE";
+		sql5 += " Title = ?";
+		
+		PreparedStatement ps1 = conn.prepareStatement(sql1);
+		PreparedStatement ps2 = conn.prepareStatement(sql2);
+		PreparedStatement ps3 = conn.prepareStatement(sql3);
+		PreparedStatement ps4 = conn.prepareStatement(sql4);
+		PreparedStatement ps5 = conn.prepareStatement(sql5);
+		
+		ps1.setString(1, title);
+		ps2.setString(2, title);
+		ps3.setString(3, title);
+		ps4.setString(4, title);
+		ps5.setString(5, title);
+		
+		ResultSet rs1 = ps1.executeQuery();
+		ResultSet rs2 = ps2.executeQuery();
+		ResultSet rs3 = ps3.executeQuery();
+		ResultSet rs4 = ps4.executeQuery();
+		ResultSet rs5 = ps5.executeQuery();
+		
+		ActionContext ctx = ActionContext.getContext();
+		ctx.getSession().put("title", getTitle());	
+		ctx.put("tip", "对不起，您查询的作者不存在");
+		
+		while(rs1.next()) {
+			isbn = rs.getString(1);
+			authorid = rs2.getString(1);
+			publisher = rs3.getString(1);
+			publishdate = rs4.getString(1);
+			price = rs5.getString(1);
+			while(rs2.next()) {
+				Title = rs2.getString(1);
+				ctx.put("tip", "您查询的图书信息如下");
+				ret = SUCCESS;
+			}
+		}
+		
+		if(conn != null) {	
+			conn.close();
+		}
+		return ret;
+	}
+}

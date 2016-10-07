@@ -1,0 +1,94 @@
+package qwq;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class SearchBook extends ActionSupport {
+
+	private String authorsname;
+	private String authorid;
+	private String name;
+	private String title;
+	
+	public String getAuthorsname() {
+		return authorsname;
+	}
+	
+	public void setAuthorsname(String authorsname) {
+		this.authorsname = authorsname;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAuthorid() {
+		return authorid;
+	}
+	
+	public void setAuthorid(String authorid) {
+		this.authorid = authorid;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String execute() throws Exception {
+		String ret = ERROR;
+//		String ret = SUCCESS;
+		String URL = "jdbc:mysql://localhost/BookDB";
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
+		String sql = "SELECT authorid FROM Author WHERE";
+		sql += " Name = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, authorsname);
+		ResultSet rs = ps.executeQuery();
+		
+		ActionContext ctx = ActionContext.getContext();
+		//ctx.getSession().put("authorname", getAuthorsname());	
+		ctx.put("tip", "对不起，您查询的作者不存在");
+		
+		String[] resultstr = new String[100];
+		int resultcnt = 0;
+		
+		while(rs.next()) {
+			resultcnt = 0;
+			authorid = rs.getString(1);
+			String sql2 = "SELECT title FROM Book WHERE";
+			sql2 += " authorid = ?";
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			ps2.setString(1, authorid);
+			ResultSet rs2 = ps2.executeQuery();
+			while(rs2.next()) {
+				title = rs2.getString(1);
+				resultstr[resultcnt++] = title;
+				ctx.put("tip", "您查询的图书信息如下");
+				ret = SUCCESS;
+			}
+		}
+	
+//		if (ret.equals(SUCCESS)) {
+//			//ctx.put("authorsname", "xxxxxxx");
+////			ctx.put("title", title);
+//		}
+		
+		if(conn != null) {	
+			conn.close();
+		}
+		return ret;
+	}
+}

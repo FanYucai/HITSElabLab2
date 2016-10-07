@@ -49,7 +49,7 @@
 		}
 		.register-box{
 			height: 490px;
-			margin-top: -270px;
+			margin-top: -300px;
 		}
 		.cent-box-header{
 			text-align: center;
@@ -115,6 +115,9 @@
 		}
 		.slide-bar1{
 			left: 4em;
+		}
+		.slide-bar2{
+			left: 8em;
 		}
 		.form{
 			float: none;

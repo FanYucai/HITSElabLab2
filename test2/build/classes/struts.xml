@@ -16,7 +16,7 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
-	<package name="default" extends="struts-default" namespace="/"
+	<package name="qwq" extends="struts-default" namespace="/"
 		strict-method-invocation="false">
 		<!-- <global-results>
 			<result name="error">/WEB-INF/content/error.jsp</result>
@@ -29,11 +29,36 @@
 			<result name="error">/WEB-INF/content/error.jsp</result>
 			<result name="success">/WEB-INF/content/welcome.jsp</result>
 		</action> -->
-
-
+		<action name="AddNewAuthor" class="qwq.AddNewAuthor">
+			<result name="success">/WEB-INF/content/addNewBook.jsp</result>
+			<result name="error">/WEB-INF/content/addNewBookFailure.jsp</result>
+		</action>		
+		<action name="AddNewWhat" class="qwq.AddNewWhat">
+			<result name="success">/WEB-INF/content/addNewBook.jsp</result>
+			<result name="error">/WEB-INF/content/addNewAuthor.jsp</result>
+		</action>
+		<action name="AddNewBook" class="qwq.AddNewBook">
+			<result name="success">/WEB-INF/content/addNewBookSuccess.jsp</result>
+			<result name="error">/WEB-INF/content/addNewBookFailure.jsp</result>
+		</action>
+		<action name="SearchBook" class="qwq.SearchBook">
+			<result name="success">/WEB-INF/content/searchResultSuccess.jsp</result>
+			<result name="error">/WEB-INF/content/searchResultFailure.jsp</result>
+		</action>
+		<action name="DeleteBook" class="qwq.DeleteBook">
+			<result name="success">/WEB-INF/content/searchResultSuccessDeleted.jsp</result>
+		</action>
+		<action name="BookDetail" class="qwq.BookDetail">
+			<result name="success">/WEB-INF/content/BookDetail.jsp</result>
+		</action>
+		<action name="EditBook" class="qwq.EditBook">
+			<result name="success">/WEB-INF/content/updateBook.jsp</result>
+		</action>	
+		<action name="UpdateBook" class="qwq.Update">
+			<result name="success">/WEB-INF/content/updateBookSuccess.jsp</result>
+		</action>	
 		<action name="*">
-			<!-- <result>/WEB-INF/content/{1}.jsp</result> -->
-			<result>/WEB-INF/content/index.html</result>
+			<result>/WEB-INF/content/{1}.jsp</result>
 		</action>
 
 	</package>
