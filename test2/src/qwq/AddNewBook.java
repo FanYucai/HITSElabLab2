@@ -16,6 +16,7 @@ public class AddNewBook extends ActionSupport {
 	private String title;
 	private String publishdate;
 	private String price;
+	private String name;
 	
 	public String getPublisher() {
 		return publisher;
@@ -23,6 +24,13 @@ public class AddNewBook extends ActionSupport {
 	
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
+	}
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public String getPublishdate() {
@@ -70,7 +78,22 @@ public class AddNewBook extends ActionSupport {
 		String URL = "jdbc:mysql://localhost/BookDB";
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
-		authorid = "00000099";
+		
+//		String askCount = "select count(*) from author";
+//		PreparedStatement cntps = conn.prepareStatement(askCount);
+//		ResultSet rscnt = cntps.executeQuery();
+//		if(rscnt.next()) {
+//			authorid = String.valueOf(Integer.parseInt(rscnt.getString(1)));
+//		}
+//		authorid = "00000099"; get authorid;
+		
+		String sql2 = "select authorid from author where name=?";
+		PreparedStatement ps2 = conn.prepareStatement(sql2);
+		ps2.setString(1, name);
+		ResultSet rs2 = ps2.executeQuery();
+		if(rs2.next()) {
+			authorid = rs2.getString(1);
+		}
 		
 		String sql = "insert into Book values(?,?,?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);

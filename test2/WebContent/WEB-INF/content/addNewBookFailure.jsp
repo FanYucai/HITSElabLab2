@@ -21,14 +21,14 @@
 			<div class="index-slide-nav">
 				<a href=searchResult class="active">查询</a>
 				<a href=addNewWhat>添加</a>
-				<a href=listAndUpdateBook>编辑</a>
+				<a href=ListAndUpdateBook.action>编辑</a>
 				<div class="slide-bar"></div>				
 			</div>
 		</div>
 
 
 <!-- 这里加入显示的作者的全部图书 -->
-	<h3>该图书已经存在于数据库中！</h3>
+	<h3>该图书已经存在于数据库中！（可能是ISBN编号相同）</h3>
 
 
 <!-- 这里加入显示的作者的全部图书 -->

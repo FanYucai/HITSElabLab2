@@ -54,7 +54,25 @@ public class AddNewAuthor extends ActionSupport {
 		String URL = "jdbc:mysql://localhost/BookDB";
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
-		authorid = "00000099";
+		
+		String askCount = "select count(*) from author";
+		PreparedStatement cntps = conn.prepareStatement(askCount);
+		ResultSet rscnt = cntps.executeQuery();
+		if(rscnt.next()) {
+			authorid = String.valueOf(Integer.parseInt(rscnt.getString(1))+1);
+		}
+		
+		String askdup = "select name from author where authorid=?";
+		PreparedStatement askdupps = conn.prepareStatement(askdup);
+		ResultSet duprs;
+		
+		do {
+			authorid = String.valueOf(Integer.parseInt(authorid)+1);
+			askdupps.setString(1, authorid);
+			duprs = askdupps.executeQuery();
+		} while(duprs.next());
+
+		System.out.println("authorid = " + authorid);
 		String sql = "insert into Author values(?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, authorid);

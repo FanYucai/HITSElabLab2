@@ -8,7 +8,12 @@
 	<title>书目查询系统</title>
 	<link rel="stylesheet" type="text/css" href="style/register-login.css">
 </head>
-<body>
+
+<script LANGUAGE="javascript"> 
+	function openwin() { alert("您需要先更新作者信息！") } 
+</script> 
+
+<body onload="openwin()">
 <div id="box"></div>
 <div class="cent-box register-box">
 	<div class="cent-box-header">
@@ -21,7 +26,7 @@
 			<div class="index-slide-nav">
 				<a href=searchResult>查询</a>
 				<a href=addNewWhat class="active">添加</a>
-				<a href=listAndUpdateBook>编辑</a>
+				<a href=ListAndUpdateBook.action>编辑</a>
 				<div class="slide-bar slide-bar1"></div>				
 			</div>
 		</div>
@@ -30,12 +35,11 @@
 		
 		<div class="login form">
 			<div class="group">
-				<!-- <div class="group-ipt bookISBN">
-					<input type="text" name="authorid" id="email" class="ipt" placeholder="图书ISBN编号" required>
-				</div> -->
+				
 				<div class="group-ipt name">
-					<input type="text" name="name" id="email" class="ipt" placeholder="作者姓名" required>
-				</div>
+					<input type="text" name="name" id="email" class="ipt" value='<s:property value="name" />' required>
+				</div> <!-- 修改成不可修改 -->
+				
 				<div class="group-ipt age">
 					<input type="text" name="age" id="user" class="ipt" placeholder="作者年龄" required>
 				</div>
@@ -46,7 +50,7 @@
 		</div>
 		
 		<div class="button">
-			<button type="submit" class="login-btn register-btn" id="button">添加图书并保存</button>
+			<button type="submit" class="login-btn register-btn" id="button">添加作者并保存</button>
 		</div>
 		
 		</form>

@@ -21,7 +21,7 @@
 			<div class="index-slide-nav">
 				<a href=searchResult class="active">查询</a>
 				<a href=addNewWhat>添加</a>
-				<a href=listAndUpdateBook>编辑</a>
+				<a href=ListAndUpdateBook.action>编辑</a>
 				<div class="slide-bar"></div>				
 			</div>
 		</div>
@@ -30,17 +30,21 @@
 <!-- 这里加入显示的作者的全部图书 -->
 	<br />
 	<h3 align="center"  style="color:white;background-color:#0faafa"><i><s:property value="title"/></i></h3>
+	<br/>
+	<h4 align="center"><i><s:property value="isbn"/></i></h4>
 	<br />
-	<h4>ISBN: <s:property value="isbn"/></h4>
-	<h4>AuthorID: <s:property value="authorid"/></h4>
-	<h4>Publisher: <s:property value="publisher"/></h4>
-	<h4>PublishDate: <s:property value="publishdate"/></h4>
-	<h4>Price: <s:property value="price"/></h4>
+	
+	<h3>AuthorName: <s:property value="authorname"/></h3>
+	<h3>Publisher:	<s:property value="publisher"/></h3>
+	<h3>PublishDate: <s:property value="publishdate"/></h3>
+	<h3>Price: <s:property value="price"/></h3>
 	
 	<div class="index-tab">
 		<div class="index-slide-nav">
 			<a href='EditBook.action?id=<s:property value="title"/>' name="id" class="active">编辑</a>
+			<a href='DeleteBook.action?id=<s:property value="title"/>' name="id" class="active">删除</a>
 			<div class="slide-bar"></div>
+			<div class="slide-bar slide-bar1"></div>
 		</div>
 	</div>
 	

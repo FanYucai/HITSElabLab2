@@ -36,19 +36,37 @@ public class DeleteBook extends ActionSupport {
 		String URL = "jdbc:mysql://localhost/BookDB";
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
-		String sqlisbn = "SELECT ISBN FROM Book WHERE Title=?";
-		PreparedStatement psisbn = conn.prepareStatement(sqlisbn);
-		psisbn.setString(1, id);		
-		title = id;
-		ResultSet rs=psisbn.executeQuery();
-		if(rs.next()) {
-			id = rs.getString(1);
-		}
-		
-		String sql = "DELETE FROM Book WHERE ISBN=?";
+
+		String sql = "SELECT AuthorID FROM Book WHERE Title=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, id);
-		System.out.println("成功删除"+ps.executeUpdate()+"条数据");
+		ResultSet rs = ps.executeQuery();	
+		
+		String sqldel = "DELETE FROM Book WHERE Title=?";
+		PreparedStatement psdel = conn.prepareStatement(sqldel);
+		psdel.setString(1, id);		
+		title = id;
+		psdel.executeUpdate();
+
+		if(rs.next()) {
+			String authorid = rs.getString(1);
+			id = authorid;
+			String au = "SELECT Title FROM Book WHERE AuthorID=?";
+			PreparedStatement psau = conn.prepareStatement(au);
+			psau.setString(1, authorid);
+			ResultSet rsau = psau.executeQuery();
+			if(!rsau.next()) {
+				String delau = "DELETE FROM Author WHERE AuthorID=?";
+				PreparedStatement delaups = conn.prepareStatement(delau);
+				delaups.setString(1, authorid);		
+				delaups.executeUpdate();
+			}
+		}
+		
+//		String sql = "DELETE FROM Book WHERE ISBN=?";
+//		PreparedStatement ps = conn.prepareStatement(sql);
+//		ps.setString(1, id);
+//		System.out.println("成功删除"+ps.executeUpdate()+"条数据");
 //		ResultSet rs = ps.executeQuery();
 
 		return SUCCESS;

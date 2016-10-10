@@ -10,45 +10,46 @@
 </head>
 <body>
 <div id="box"></div>
-<div class="cent-box">
+<div class="cent-box register-box">
 	<div class="cent-box-header">
 		<h1 class="main-title hide">lab2</h1>
 		<h2 class="sub-title">樊昱才lab2 - BookDB System</h2>
+		<h2 class="sub-title">注意：只支持英文输入</h2>
 	</div>
 
 	<div class="cont-main clearfix">
 		<div class="index-tab">
 			<div class="index-slide-nav">
-				<a href=searchResult class="active">查询</a>
+				<a href=searchResult>查询</a>
 				<a href=addNewWhat>添加</a>
-				<a href=listAndUpdateBook>编辑</a>
-				<div class="slide-bar"></div>				
+				<a href=ListAndUpdateBook.action class="active">编辑</a>
+				<div class="slide-bar slide-bar2"></div>				
 			</div>
 		</div>
 
 
 <!-- 这里加入显示的作者的全部图书 -->
 	<br />
-	<h3 align="center"  style="color:white;background-color:#0faafa"><i><s:property value="title"/></i></h3>
+	<h3 align="center" style="color:white;background-color:#0faafa"><i><s:property value="title"/></i></h3>
+	<h4 align="center"><i><s:property value="isbn"/></i></h4>
 	<br />
-	<form action="UpdateBook.action">
 	
-	<%-- <h4>ISBN: <s:property value="isbn"/></h4>
-	<h4>AuthorID: <s:property value="authorid"/></h4>
-	<h4>Publisher: <s:property value="publisher"/></h4>
-	<h4>PublishDate: <s:property value="publishdate"/></h4>
-	<h4>Price: <s:property value="price"/></h4>
-	 	 --%>
+	<form action="UpdateBook.action">
 		<div class="login form">
 			<div class="group">
 				<div class="group-ipt bookISBN">
-					<input type="text" name="isbn" id="email" class="ipt" value='<s:property value="isbn" />' >
+					<input type="hidden" name="isbn" id="email" class="ipt" value='<s:property value="isbn" />' >
 				</div>
 				<div class="group-ipt bookTitle">
-					<input type="text" name="title" id="user" class="ipt" value='<s:property value="title" />'>
+					<input type="hidden" name="title" id="email" class="ipt" value='<s:property value="title" />'>
 				</div>
+				
+				<div class="group-ipt name">
+					<input type="hidden" name="name" id="user" class="ipt" value='<s:property value="authorname" />'>
+				</div>
+				
 				<div class="group-ipt authorID">
-					<input type="text" name="authorid" id="user" class="ipt" value='<s:property value="authorid" />'>
+					<input type="text" name="authorname" id="email" class="ipt" value='<s:property value="authorname" />'>
 				</div>
 				<div class="group-ipt bookPublisher">
 					<input type="text" name="publisher" id="user" class="ipt" value='<s:property value="publisher" />'>

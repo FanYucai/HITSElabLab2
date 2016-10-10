@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="box"></div>
-<div class="cent-box">
+<div class="cent-box register-box">
 	<div class="cent-box-header">
 		<h1 class="main-title hide">lab2</h1>
 		<h2 class="sub-title">樊昱才lab2 - BookDB System</h2>
@@ -19,35 +19,54 @@
 	<div class="cont-main clearfix">
 		<div class="index-tab">
 			<div class="index-slide-nav">
-				<a href=searchResult class="active">查询</a>
+				<a href=searchResult>查询</a>
 				<a href=addNewWhat>添加</a>
-				<a href=listAndUpdateBook>编辑</a>
-				<div class="slide-bar"></div>				
+				<a href=ListAndUpdateBook.action class="active">编辑</a>
+				<div class="slide-bar slide-bar2"></div>				
 			</div>
 		</div>
 
 
 <!-- 这里加入显示的作者的全部图书 -->
-	<br />
-	<h3 align="center"  style="color:white;background-color:#0faafa"><i><s:property value="title"/></i></h3>
-	<br />
-	<h4>ISBN: <s:property value="isbn"/></h4>
-	<h4>AuthorID: <s:property value="authorid"/></h4>
-	<h4>Publisher: <s:property value="publisher"/></h4>
-	<h4>PublishDate: <s:property value="publishdate"/></h4>
-	<h4>Price: <s:property value="price"/></h4>
-	
-	<br />
-	<hr style=" height:1px;border:none;border-top:1px solid #0f88eb;" />
-    <%-- <h5>${requestScope.tip}</h5> --%>
-	<br />
-	<div class="index-tab">
-		<div class="index-slide-nav">
-			<a href='EditBook.action?id=<s:property value="title"/>' name="id" class="active">编辑</a>
-		</div>
-	</div>
+		<s:iterator value="resultstr" status="status">
+		
+		<s:if test="#status.even">
+			<br/><hr style=" height:1px;border:none;border-top:1px solid #0f88eb;" />
+			<h3 align="center"><i>
+				<a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">
+					<s:property value="resultstr[#status.index]"/>
+				</a>
+			</i></h3>
+			<hr style=" height:1px;border:none;border-top:1px solid #0f88eb;" />
+			
+			<div class="index-tab">
+				<div class="index-slide-nav">
+					<%-- <a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">详情</a> --%>
+					<a href='DeleteBook.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">删除</a>
+				</div>
+			</div>
+		</s:if>
+		
+		<s:if test="#status.odd">
+			<br/>
+			<h3 align="center" style="color:white;background-color:#0faafa">
+				<i>
+					<a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">
+						<s:property value="resultstr[#status.index]"/>
+					</a>
+				</i>
+			</h3>
+			<div class="index-tab">
+				<div class="index-slide-nav">
+					<a href='DeleteBook.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">删除</a>
+				</div>
+			</div>
+		</s:if>
+		</s:iterator>
+		
 <!-- 这里加入显示的作者的全部图书 -->
 
+		<br/>
 		<form action="SearchBook.action" method="post">
 		
 			<div class="login form">
@@ -65,7 +84,6 @@
 		</form>
 	</div>
 </div>
-
 
 <!-- background -->
 

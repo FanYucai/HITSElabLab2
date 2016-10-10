@@ -8,7 +8,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.*;
 
-public class SearchBook extends ActionSupport {
+public class ListAndUpdateBook extends ActionSupport {
 
 	private String authorsname;
 	private String authorid;
@@ -71,38 +71,19 @@ public class SearchBook extends ActionSupport {
 		String URL = "jdbc:mysql://localhost/BookDB";
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
-		String sql = "SELECT authorid FROM Author WHERE";
-		sql += " Name = '";
-		sql += authorsname;
-		sql += "'";
+		String sql = "SELECT Title FROM Book";
 		PreparedStatement ps = conn.prepareStatement(sql);
-//		ps.setString(1, authorsname);
 		ResultSet rs = ps.executeQuery();
 		
 		ActionContext ctx = ActionContext.getContext();
-		String tipstr;
-		tipstr = authorsname;
-		ctx.put("tip", tipstr+" 的查询结果:");
+		ctx.put("tip", "对不起，您查询的作者不存在");
 		
 		while(rs.next()) {
-			authorid = rs.getString(1);
-			String sql2 = "SELECT title FROM Book WHERE";
-			sql2 += " authorid = ?";
-			PreparedStatement ps2 = conn.prepareStatement(sql2);
-			ps2.setString(1, authorid);
-			ResultSet rs2 = ps2.executeQuery();
-			while(rs2.next()) {
-				title = rs2.getString(1);
-				resultstr.add(title);
-				ctx.put("tip", "您查询的图书信息如下");
-				ret = SUCCESS;
-			}
+			title = rs.getString(1);
+			resultstr.add(title);
+			ctx.put("tip", "您查询的图书信息如下");
+			ret = SUCCESS;
 		}
-	
-//		if (ret.equals(SUCCESS)) {
-//			//ctx.put("authorsname", "xxxxxxx");
-////			ctx.put("title", title);
-//		}
 		
 		if(conn != null) {	
 			conn.close();

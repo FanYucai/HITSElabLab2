@@ -17,13 +17,21 @@ public class EditBook extends ActionSupport {
 	private String publishdate;
 	private String price;
 	private String publisher;
-
+	private String authorname;
+	
 	public String getId() {
 		return id;
 	}
 	
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getAuthorname() {
+		return authorname;
+	}
+	
+	public void setAuthorname(String authorname) {
+		this.authorname = authorname;
 	}
 	
 	public String getAuthorid() {
@@ -88,12 +96,15 @@ public class EditBook extends ActionSupport {
 		sql4 += " Title = ?";
 		String sql5 = "SELECT Price FROM Book WHERE";
 		sql5 += " Title = ?";
+		String sql6 = "SELECT Name FROM Author WHERE";
+		sql6 += " AuthorID = ?";
 //		
 		PreparedStatement ps1 = conn.prepareStatement(sql1);
 		PreparedStatement ps2 = conn.prepareStatement(sql2);
 		PreparedStatement ps3 = conn.prepareStatement(sql3);
 		PreparedStatement ps4 = conn.prepareStatement(sql4);
 		PreparedStatement ps5 = conn.prepareStatement(sql5);
+		PreparedStatement ps6 = conn.prepareStatement(sql6);
 		
 		ps1.setString(1, tle);
 		ps2.setString(1, tle);
@@ -106,6 +117,7 @@ public class EditBook extends ActionSupport {
 		ResultSet rs3 = ps3.executeQuery();
 		ResultSet rs4 = ps4.executeQuery();
 		ResultSet rs5 = ps5.executeQuery();
+		
 //		
 		ActionContext ctx = ActionContext.getContext();
 		ctx.put("tip", tle);
@@ -117,6 +129,11 @@ public class EditBook extends ActionSupport {
 		}
 		if(rs2.next()) {
 			authorid = rs2.getString(1);
+			ps6.setString(1, authorid);
+			ResultSet rs6 = ps6.executeQuery();
+			if(rs6.next()) {
+				authorname = rs6.getString(1);
+			}
 //			ctx.put("tip", authorid);
 		}
 		if(rs3.next()) {

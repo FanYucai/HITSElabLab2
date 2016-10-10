@@ -21,14 +21,15 @@
 			<div class="index-slide-nav">
 				<a href=searchResult class="active">查询</a>
 				<a href=addNewWhat>添加</a>
-				<a href=listAndUpdateBook>编辑</a>
+				<a href=ListAndUpdateBook.action>编辑</a>
 				<div class="slide-bar"></div>				
 			</div>
 		</div>
 
 
 <!-- 这里加入显示的作者的全部图书 -->
-		<h3>${requestScope.tip}</h3>
+		<h4>${requestScope.tip}</h4>
+		<h4>对不起，您查询的作者不存在</h4>
 <!-- 这里加入显示的作者的全部图书 -->
 
 		<form action="SearchBook.action" method="post">

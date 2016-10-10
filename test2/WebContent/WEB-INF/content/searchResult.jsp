@@ -21,7 +21,7 @@
 			<div class="index-slide-nav">
 				<a href=searchResult class="active">查询</a>
 				<a href=addNewWhat>添加</a>
-				<a href=listAndUpdateBook>编辑</a>
+				<a href=ListAndUpdateBook.action>编辑</a>
 				<div class="slide-bar"></div>				
 			</div>
 		</div>

@@ -54,9 +54,15 @@
 		<action name="EditBook" class="qwq.EditBook">
 			<result name="success">/WEB-INF/content/updateBook.jsp</result>
 		</action>	
-		<action name="UpdateBook" class="qwq.Update">
+		<action name="UpdateBook" class="qwq.UpdateBook">
 			<result name="success">/WEB-INF/content/updateBookSuccess.jsp</result>
+			<!-- <result name="error">/WEB-INF/content/updateBookFailure.jsp</result> -->	
 		</action>	
+
+		<action name="ListAndUpdateBook" class="qwq.ListAndUpdateBook">
+			<result name="success">/WEB-INF/content/listAndUpdateBook.jsp</result>
+		</action>	
+		
 		<action name="*">
 			<result>/WEB-INF/content/{1}.jsp</result>
 		</action>

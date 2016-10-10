@@ -14,6 +14,7 @@
 	<div class="cent-box-header">
 		<h1 class="main-title hide">lab2</h1>
 		<h2 class="sub-title">樊昱才lab2 - BookDB System</h2>
+		<h2 class="sub-title">注意：只支持英文输入</h2>
 	</div>
 
 	<div class="cont-main clearfix">
@@ -21,7 +22,7 @@
 			<div class="index-slide-nav">
 				<a href=searchResult>查询</a>
 				<a href=addNewWhat class="active">添加</a>
-				<a href=listAndUpdateBook>编辑</a>
+				<a href=ListAndUpdateBook.action>编辑</a>
 				<div class="slide-bar slide-bar1"></div>				
 			</div>
 		</div>
@@ -31,13 +32,13 @@
 		<div class="login form">
 			<div class="group">
 				<div class="group-ipt name">
-					<input type="text" name="name" id="email" class="ipt" placeholder="The name of the author(English only)" required>
+					<input type="text" name="name" id="email" class="ipt" placeholder="请输入作者姓名" required>
 				</div>
 			</div>
 		</div>
 		
 		<div class="button">
-			<button type="submit" class="login-btn register-btn" id="button">添加图书并保存</button>
+			<button type="submit" class="login-btn register-btn" id="button">添加该作者</button>
 		</div>
 		
 		</form>

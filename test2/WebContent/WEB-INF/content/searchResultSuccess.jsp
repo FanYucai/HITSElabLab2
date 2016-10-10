@@ -21,7 +21,7 @@
 			<div class="index-slide-nav">
 				<a href=searchResult class="active">查询</a>
 				<a href=addNewWhat>添加</a>
-				<a href=listAndUpdateBook>编辑</a>
+				<a href=ListAndUpdateBook.action>编辑</a>
 				<div class="slide-bar"></div>				
 			</div>
 		</div>
@@ -29,19 +29,24 @@
 
 <!-- 这里加入显示的作者的全部图书 -->
 
-        <h4>${requestScope.tip}</h4>
-        <h4>Written by: <s:property value="authorsname"></s:property> </h4>
+        <br /><h4>Books written by: <s:property value="authorsname"></s:property> </h4>
 		
 		<s:iterator value="resultstr" status="status">
 		
 		<s:if test="#status.even">
 			<br/><hr style=" height:1px;border:none;border-top:1px solid #0f88eb;" />
-			<h3 align="center"><i><s:property value="resultstr[#status.index]"/></i></h3>
+			
+			<h3 align="center"><i>
+				<a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id">
+					<s:property value="resultstr[#status.index]"/>
+				</a>
+			</i></h3>
+			
 			<hr style=" height:1px;border:none;border-top:1px solid #0f88eb;" />
 			
 			<div class="index-tab">
 				<div class="index-slide-nav">
-					<a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">详情</a>
+					<%-- <a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">详情</a> --%>
 					<a href='DeleteBook.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">删除</a>
 				</div>
 			</div>
@@ -50,12 +55,15 @@
 		<s:if test="#status.odd">
 			<br/>
 			<h3 align="center" style="color:white;background-color:#0faafa">
-				<i><s:property value="resultstr[#status.index]"/></i>
+				<i>
+					 <a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id">
+						<s:property value="resultstr[#status.index]"/>
+					</a>
+				</i>
 			</h3>
 			<div class="index-tab">
 				<div class="index-slide-nav">
-					<a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">详情</a>
-					
+					<%-- <a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">详情</a> --%>
 					<a href='DeleteBook.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">删除</a>
 				</div>
 			</div>

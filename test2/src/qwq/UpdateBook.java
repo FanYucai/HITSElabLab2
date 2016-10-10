@@ -17,7 +17,23 @@ public class UpdateBook extends ActionSupport {
 	private String publishdate;
 	private String price;
 	private String publisher;
+	private String authorname;
+	private String name;
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+	
+	public void setAuthorname(String authorname) {
+		this.authorname = authorname;
+	}
+	public String getAuthorname() {
+		return authorname;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -73,65 +89,54 @@ public class UpdateBook extends ActionSupport {
 	
 	public String execute() throws Exception {
 		String ret = SUCCESS;
-		String tle = getId();
 		String URL = "jdbc:mysql://localhost/BookDB";
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
 		
-		String sql1 = "SELECT ISBN FROM Book WHERE";
-		sql1 += " Title = ?";
-		String sql2 = "SELECT AuthorID FROM Book WHERE";
-		sql2 += " Title = ?";
-		String sql3 = "SELECT Publisher FROM Book WHERE";
-		sql3 += " Title = ?";
-		String sql4 = "SELECT PublishDate FROM Book WHERE";
-		sql4 += " Title = ?";
-		String sql5 = "SELECT Price FROM Book WHERE";
-		sql5 += " Title = ?";
-//		
+		String sql1 = "SELECT Authorid FROM Author WHERE Name=?";
+		String sql2 = "UPDATE Book SET Title=?, Authorid=?, Publisher=?, Publishdate=?, Price=? WHERE ISBN=?";
+
 		PreparedStatement ps1 = conn.prepareStatement(sql1);
 		PreparedStatement ps2 = conn.prepareStatement(sql2);
-		PreparedStatement ps3 = conn.prepareStatement(sql3);
-		PreparedStatement ps4 = conn.prepareStatement(sql4);
-		PreparedStatement ps5 = conn.prepareStatement(sql5);
 		
-		ps1.setString(1, tle);
-		ps2.setString(1, tle);
-		ps3.setString(1, tle);
-		ps4.setString(1, tle);
-		ps5.setString(1, tle);
-
+		ps1.setString(1, name);
 		ResultSet rs1 = ps1.executeQuery();
-		ResultSet rs2 = ps2.executeQuery();
-		ResultSet rs3 = ps3.executeQuery();
-		ResultSet rs4 = ps4.executeQuery();
-		ResultSet rs5 = ps5.executeQuery();
-//		
-		ActionContext ctx = ActionContext.getContext();
-		ctx.put("tip", tle);
-		
-		title = tle;
 		if(rs1.next()) {
-			isbn = rs1.getString(1);
-//			ctx.put("tip", isbn);
-		}
-		if(rs2.next()) {
-			authorid = rs2.getString(1);
-//			ctx.put("tip", authorid);
-		}
-		if(rs3.next()) {
-			publisher = rs3.getString(1);
-//			ctx.put("tip", publisher);
-		}
-		if(rs4.next()) {
-			publishdate = rs4.getString(1);
-//			ctx.put("tip", publishdate);
-		}
-		if(rs5.next()) {
-			price = rs5.getString(1);
-//			ctx.put("tip", price);
-		}
+			authorid=rs1.getString(1);
+			
+			ps2.setString(6, isbn);
+			ps2.setString(1, title);
+			ps2.setString(2, authorid);
+			ps2.setString(3, publisher);
+			ps2.setString(4, publishdate);
+			ps2.setString(5, price);
+			
+			ps2.executeUpdate();
+//			ret = SUCCESS;
+			if(name.equals(authorname)) {
+				ret = SUCCESS;//如果name＝authorname则不更新author
+			} else {
+				String sql3 = "UPDATE Author SET Name=? WHERE AuthorID=?";
+				PreparedStatement ps3 = conn.prepareStatement(sql3);
+				ps3.setString(1, authorname);
+				ps3.setString(2, authorid);
+				ps3.executeUpdate();
+				ret = SUCCESS;
+			}
+		} 
+//		if(rs1.next()) {
+//			authorid=rs1.getString(1);
+//			ps2.setString(6, isbn);
+//			ps2.setString(1, title);
+//			ps2.setString(2, authorid);
+//			ps2.setString(3, publisher);
+//			ps2.setString(4, publishdate);
+//			ps2.setString(5, price);
+//			ps2.executeUpdate();
+////			ret = SUCCESS;
+//			}
 //		
+
 		if(conn != null) {	
 			conn.close();
 		}

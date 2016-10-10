@@ -4,11 +4,15 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
+
 <head>
 	<title>书目查询系统</title>
 	<link rel="stylesheet" type="text/css" href="style/register-login.css">
 </head>
-<body>
+<script LANGUAGE="javascript"> 
+	function openwin() { alert("现在可以添加图书信息了！") } 
+</script> 
+<body onload="openwin()">
 <div id="box"></div>
 <div class="cent-box register-box">
 	<div class="cent-box-header">
@@ -21,7 +25,7 @@
 			<div class="index-slide-nav">
 				<a href=searchResult>查询</a>
 				<a href=addNewWhat class="active">添加</a>
-				<a href=listAndUpdateBook>编辑</a>
+				<a href=ListAndUpdateBook.action>编辑</a>
 				<div class="slide-bar slide-bar1"></div>				
 			</div>
 		</div>
@@ -36,9 +40,11 @@
 				<div class="group-ipt bookTitle">
 					<input type="text" name="title" id="user" class="ipt" placeholder="图书名目" required>
 				</div>
-				<div class="group-ipt authorID">
-					<input type="text" name="authorid" id="user" class="ipt" placeholder="作者ID" required>
+				
+				<div class="group-ipt name">
+					<input type="hidden" name="name" id="user" class="ipt" value='<s:property value="name"/>' >
 				</div>
+				
 				<div class="group-ipt bookPublisher">
 					<input type="text" name="publisher" id="user" class="ipt" placeholder="图书出版商" required>
 				</div>
