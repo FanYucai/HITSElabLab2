@@ -75,7 +75,8 @@ public class AddNewBook extends ActionSupport {
 	
 	public String execute() throws Exception {
 		String ret = ERROR;
-		String URL = "jdbc:mysql://localhost/BookDB";
+//		String URL = "jdbc:mysql://localhost/BookDB";
+		String URL = "jdbc:mysql://eshgjxkzwyfg.rds.sae.sina.com.cn:10436/bookdb";
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
 		
@@ -87,7 +88,7 @@ public class AddNewBook extends ActionSupport {
 //		}
 //		authorid = "00000099"; get authorid;
 		
-		String sql2 = "select authorid from author where name=?";
+		String sql2 = "select authorid from Author where name=?";
 		PreparedStatement ps2 = conn.prepareStatement(sql2);
 		ps2.setString(1, name);
 		ResultSet rs2 = ps2.executeQuery();

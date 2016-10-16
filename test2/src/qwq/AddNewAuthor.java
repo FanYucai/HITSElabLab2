@@ -51,18 +51,19 @@ public class AddNewAuthor extends ActionSupport {
 	
 	public String execute() throws Exception {
 		String ret = ERROR;
-		String URL = "jdbc:mysql://localhost/BookDB";
+//		String URL = "jdbc:mysql://localhost/BookDB";
+		String URL = "jdbc:mysql://eshgjxkzwyfg.rds.sae.sina.com.cn:10436/bookdb";
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
 		
-		String askCount = "select count(*) from author";
+		String askCount = "select count(*) from Author";
 		PreparedStatement cntps = conn.prepareStatement(askCount);
 		ResultSet rscnt = cntps.executeQuery();
 		if(rscnt.next()) {
 			authorid = String.valueOf(Integer.parseInt(rscnt.getString(1))+1);
 		}
 		
-		String askdup = "select name from author where authorid=?";
+		String askdup = "select name from Author where authorid=?";
 		PreparedStatement askdupps = conn.prepareStatement(askdup);
 		ResultSet duprs;
 		

@@ -14,7 +14,6 @@
 	<div class="cent-box-header">
 		<h1 class="main-title hide">lab2</h1>
 		<h2 class="sub-title">樊昱才lab2 - BookDB System</h2>
-		<h2 class="sub-title">注意：只支持英文输入</h2>
 	</div>
 
 	<div class="cont-main clearfix">

@@ -16,6 +16,7 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<package name="qwq" extends="struts-default" namespace="/"
 		strict-method-invocation="false">
 		<!-- <global-results>

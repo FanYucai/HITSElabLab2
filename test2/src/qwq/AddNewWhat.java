@@ -22,7 +22,8 @@ public class AddNewWhat extends ActionSupport {
 	
 	public String execute() throws Exception {
 		String ret = ERROR;
-		String URL = "jdbc:mysql://localhost/BookDB";
+//		String URL = "jdbc:mysql://localhost/BookDB";
+		String URL = "jdbc:mysql://eshgjxkzwyfg.rds.sae.sina.com.cn:10436/bookdb";
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(URL, "root", "12345678");
 		

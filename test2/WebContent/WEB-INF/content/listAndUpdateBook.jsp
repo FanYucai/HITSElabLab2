@@ -34,7 +34,9 @@
 			<br/><hr style=" height:1px;border:none;border-top:1px solid #0f88eb;" />
 			<h3 align="center"><i>
 				<a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">
+					<font color="black">
 					<s:property value="resultstr[#status.index]"/>
+					</font>
 				</a>
 			</i></h3>
 			<hr style=" height:1px;border:none;border-top:1px solid #0f88eb;" />
@@ -52,7 +54,9 @@
 			<h3 align="center" style="color:white;background-color:#0faafa">
 				<i>
 					<a href='BookDetail.action?id=<s:property value="resultstr[#status.index]"/>' name="id" class="active">
+						<font color="white">
 						<s:property value="resultstr[#status.index]"/>
+						</font>
 					</a>
 				</i>
 			</h3>
