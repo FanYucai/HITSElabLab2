@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="/Users/admin/Desktop/workspace"/>
+		<item value="/Users/admin/Desktop/lab2备份2"/>
+		<item value="/Users/admin/Desktop/lab2备份2/test2"/>
 		<item value="/Users/admin/Desktop/workspace/Demo"/>
 	</list>
 	<section name="ExternalProjectImportWizard">
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jdt.ui.wizards.JavaProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.jdt.ui.java"/>
+		</list>
 	</section>
 </section>

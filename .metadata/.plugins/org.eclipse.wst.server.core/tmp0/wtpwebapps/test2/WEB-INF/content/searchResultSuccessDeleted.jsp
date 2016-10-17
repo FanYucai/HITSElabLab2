@@ -20,14 +20,14 @@
 			<div class="index-slide-nav">
 				<a href=searchResult class="active">查询</a>
 				<a href=addNewWhat>添加</a>
-				<a href=listAndUpdateBook>编辑</a>
+				<a href=ListAndUpdateBook.action>编辑</a>
 				<div class="slide-bar"></div>				
 			</div>
 		</div>
 
 
 <!-- 这里加入显示的作者的全部图书 -->
-
+		<h3>authorid:</h3><h2><i><s:property value="id"/> </i></h2>
 		<h3>删除</h3><h2><i><s:property value="title"/> </i></h2><h3>成功！</h3>
 
 <!-- 这里加入显示的作者的全部图书 -->
