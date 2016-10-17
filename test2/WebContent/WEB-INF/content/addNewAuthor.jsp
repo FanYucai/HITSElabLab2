@@ -12,7 +12,7 @@
 <script LANGUAGE="javascript"> 
 	function openwin() { alert("您需要先更新作者信息！") } 
 </script> 
-<!-- asdasdasdafasdf -->
+<!-- asdasdadafasdf -->
 <body onload="openwin()">
 <div id="box"></div>
 <div class="cent-box register-box">
